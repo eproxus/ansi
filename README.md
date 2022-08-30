@@ -22,6 +22,10 @@ ANSI escape code library for Erlang.
 
 ## Color Tool
 
+<p align="center">
+  <img src="colortool.png" alt="colortool screenshot" width="523px"/>
+</p>
+
 _ansi_ includes a color helper CLI tool that can be used to enumerate colors.
 
 ### Usage
