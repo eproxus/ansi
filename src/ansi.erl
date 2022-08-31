@@ -131,6 +131,7 @@ terminal({mode, Mode}) when
 terminal({mode, Mode}) ->
     error({invalid_mode, Mode}).
 
+% @private
 detect_mode() ->
     case terminal(mode) of
         undefined ->

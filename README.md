@@ -4,26 +4,26 @@ ANSI escape code library for Erlang.
 
 ## Features
 
-* **Smart** :brain:
+* **Smart** 🧠
 
   Terminal color support is detected automatically on load, based on various factors such as environment variables and `tput` output (if available).
 
-* **Respectful** :pray:
+* **Respectful** 🙏
 
   Respects [`NO_COLOR`](https://no-color.org) for disabling colorized output if set by the user. This can be overridden with `ansi:set_mode(Mode)`.
 
-* **Fast** :zap:
+* **Fast** ⚡️
 
   The terminal color mode is detected and stored as a persistent term once on module load. When used, the library only produces deep IO lists with no unnecessary flattening.
 
-* **Composable** :wrench:
+* **Composable** 🔧
 
   _ansi_ does not assume printing to the console. The user can send the resulting IO data wherever they want (console, file, log etc.) using the appropriate library functions in OTP (or elsewhere).
 
 ## Color Tool
 
 <p align="center">
-  <img src="colortool.png" alt="colortool screenshot" width="523px"/>
+  <img src="assets/colortool.png" alt="colortool screenshot" width="523px"/>
 </p>
 
 _ansi_ includes a color helper CLI tool that can be used to enumerate colors.
