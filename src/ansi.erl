@@ -48,10 +48,6 @@ cursor(Format) -> control_sequence(cursor_(Format)).
 
 cursor_(home) ->
     $H;
-cursor_({Direction, 0}) when
-    Direction == up; Direction == down; Direction == left; Direction == right
-->
-    [];
 cursor_({up, Lines}) when Lines > 0 ->
     [integer_to_list(Lines), $A];
 cursor_({up, Lines}) when Lines < 0 ->
@@ -60,25 +56,23 @@ cursor_({down, Lines}) when Lines > 0 ->
     [integer_to_list(Lines), $B];
 cursor_({down, Lines}) when Lines < 0 ->
     cursor_({up, abs(Lines)});
-cursor_({left, Lines}) when Lines > 0 ->
-    [integer_to_list(Lines), $C];
-cursor_({left, Lines}) when Lines < 0 ->
-    cursor_({right, abs(Lines)});
-cursor_({right, Lines}) when Lines > 0 ->
-    [integer_to_list(Lines), $D];
-cursor_({right, Lines}) when Lines < 0 ->
-    cursor_({left, abs(Lines)});
-cursor_({Direction, beginning, 0}) when Direction == up; Direction == down ->
-    [];
-cursor_({down, beginning, Lines}) when is_integer(Lines), Lines > 0 ->
+cursor_({left, Columns}) when Columns > 0 ->
+    [integer_to_list(Columns), $C];
+cursor_({left, Columns}) when Columns < 0 ->
+    cursor_({right, abs(Columns)});
+cursor_({right, Columns}) when Columns > 0 ->
+    [integer_to_list(Columns), $D];
+cursor_({right, Columns}) when Columns < 0 ->
+    cursor_({left, abs(Columns)});
+cursor_({down, Lines, beginning}) when is_integer(Lines), Lines >= 0 ->
     [integer_to_list(Lines), $E];
-cursor_({down, beginning, Lines}) when Lines < 0 ->
-    cursor_({up, beginning, abs(Lines)});
-cursor_({up, beginning, Lines}) when is_integer(Lines), Lines > 0 ->
+cursor_({down, Lines, beginning}) when Lines < 0 ->
+    cursor_({up, abs(Lines), beginning});
+cursor_({up, Lines, beginning}) when is_integer(Lines), Lines >= 0 ->
     [integer_to_list(Lines), $F];
-cursor_({up, beginning, Lines}) when Lines < 0 ->
-    cursor_({down, beginning, abs(Lines)});
-cursor_({column, Column}) when is_integer(Column), Column > 0 ->
+cursor_({up, Lines, beginning}) when Lines < 0 ->
+    cursor_({down, abs(Lines), beginning});
+cursor_({column, Column}) when is_integer(Column), Column >= 0 ->
     [integer_to_list(Column), $G];
 cursor_({line, Line}) when is_integer(Line), Line > 0 ->
     [integer_to_list(Line), $d];
